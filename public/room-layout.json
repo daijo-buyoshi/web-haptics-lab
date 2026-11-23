@@ -1,0 +1,386 @@
+[
+  {
+    "uid": "placed_1795415469310_p8ed",
+    "catalogId": "auto_/models/props/prop11/refrigerator_-_grey_polished_metal.glb",
+    "name": "冷蔵庫",
+    "url": "/models/props/prop11/refrigerator_-_grey_polished_metal.glb",
+    "position": [
+      4.5208159376405375,
+      7.450580569168253e-10,
+      4.447612164883579
+    ],
+    "rotationY": -7.8539816339744775,
+    "targetSize": 2.16,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795415508428_6cwk",
+    "catalogId": "auto_/models/props/prop10/kitchen.glb",
+    "name": "キッチン",
+    "url": "/models/props/prop10/kitchen.glb",
+    "position": [
+      4.559633549618147,
+      7.450576128276154e-10,
+      1.3
+    ],
+    "rotationY": -7.8539816339744775,
+    "targetSize": 5.12,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795416745803_n64o",
+    "catalogId": "auto_/models/props/prop12/bed_agape.glb",
+    "name": "ベッド",
+    "url": "/models/props/prop12/bed_agape.glb",
+    "position": [
+      -3.414999999999998,
+      7.450582789614302e-10,
+      -3.6292339487806182
+    ],
+    "rotationY": 3.141592653589792,
+    "targetSize": 3.14,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795417006535_wrqy",
+    "catalogId": "auto_/models/props/prop13/modern__sofa.glb",
+    "name": "モダンソファ",
+    "url": "/models/props/prop13/modern__sofa.glb",
+    "position": [
+      0.8786672302381595,
+      7.450582789614302e-10,
+      -3.4949999999999997
+    ],
+    "rotationY": 1.5707963267948966,
+    "targetSize": 2.98,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795417380513_w3m6",
+    "catalogId": "auto_/models/props/prop14/tv.glb",
+    "name": "テレビ",
+    "url": "/models/props/prop14/tv.glb",
+    "position": [
+      4.895522574981007,
+      1.1586159293385283,
+      -3.265682282545476
+    ],
+    "rotationY": -1.5707963267948966,
+    "targetSize": 3.16,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795417450273_aul3",
+    "catalogId": "auto_/models/props/prop2/dining_table.glb",
+    "name": "ダイニングテーブル",
+    "url": "/models/props/prop2/dining_table.glb",
+    "position": [
+      0.6534381121483717,
+      7.450582789614302e-10,
+      2.8538787337134934
+    ],
+    "rotationY": -1.5707963267948966,
+    "targetSize": 2.16,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795417547303_0oty",
+    "catalogId": "auto_/models/props/prop1/computer_desk.glb",
+    "name": "コンピュータデスク",
+    "url": "/models/props/prop1/computer_desk.glb",
+    "position": [
+      -3.774999999999999,
+      7.450582789614302e-10,
+      4.444065437716407
+    ],
+    "rotationY": -3.141592653589792,
+    "targetSize": 2.42,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795417753467_u55f",
+    "catalogId": "auto_/models/props/prop3/noguchi_coffee_table.glb",
+    "name": "ノグチ・コーヒーテーブル",
+    "url": "/models/props/prop3/noguchi_coffee_table.glb",
+    "position": [
+      3.0796858800993796,
+      7.450582789614302e-10,
+      -3.032104169016441
+    ],
+    "rotationY": -7.853981633974477,
+    "targetSize": 2.26,
+    "mode": "static",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795418516944_3mnw",
+    "catalogId": "auto_/models/props/prop6/monitor__computer__realistic_computer_monitor.glb",
+    "name": "パソコンモニター",
+    "url": "/models/props/prop6/monitor__computer__realistic_computer_monitor.glb",
+    "position": [
+      -3.74232647455496,
+      0.9891600659288282,
+      4.546380204096765
+    ],
+    "rotationY": -9.424777960769376,
+    "targetSize": 1.06,
+    "mode": "dynamic",
+    "massKg": 4,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795418612787_x4k3",
+    "catalogId": "auto_/models/props/prop7/dell_xps_desktop_low-poly.glb",
+    "name": "デスクトップPC本体",
+    "url": "/models/props/prop7/dell_xps_desktop_low-poly.glb",
+    "position": [
+      -2.7851688174487617,
+      0.9891600659288282,
+      4.629808303265387
+    ],
+    "rotationY": -4.71238898038469,
+    "targetSize": 0.7,
+    "mode": "dynamic",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795418687350_uvlv",
+    "catalogId": "auto_/models/props/prop8/keyboard.glb",
+    "name": "キーボード",
+    "url": "/models/props/prop8/keyboard.glb",
+    "position": [
+      -3.7308181266460836,
+      0.9891600659288282,
+      4.1232672305345295
+    ],
+    "rotationY": -3.141592653589793,
+    "targetSize": 0.54,
+    "mode": "dynamic",
+    "massKg": 0.8,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795418785520_bay4",
+    "catalogId": "auto_/models/props/prop9/computer_mouse_low-poly.glb",
+    "name": "パソコンマウス",
+    "url": "/models/props/prop9/computer_mouse_low-poly.glb",
+    "position": [
+      -4.273285132982952,
+      0.9891600659288282,
+      4.16510417623498
+    ],
+    "rotationY": -1.5707963267948966,
+    "targetSize": 0.18,
+    "mode": "dynamic",
+    "massKg": 0.3,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795418877071_zfi8",
+    "catalogId": "auto_/models/props/prop15/coffee_cup.glb",
+    "name": "コーヒーカップ",
+    "url": "/models/props/prop15/coffee_cup.glb",
+    "position": [
+      2.4358123245121415,
+      0.6908978184780881,
+      -2.8442464977662376
+    ],
+    "rotationY": -1.5707963267948966,
+    "targetSize": 0.22,
+    "mode": "dynamic",
+    "massKg": 0.1,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795419061729_35vy",
+    "catalogId": "auto_/models/props/prop16/bedside_lamp_-_low_poly.glb",
+    "name": "ベッドサイドランプ",
+    "url": "/models/props/prop16/bedside_lamp_-_low_poly.glb",
+    "position": [
+      -4.808778418106234,
+      1.1290022207457686,
+      -2.3982366664215107
+    ],
+    "rotationY": -1.7453292519943295,
+    "targetSize": 0.54,
+    "mode": "dynamic",
+    "massKg": 0.9,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795419301525_xgk3",
+    "catalogId": "auto_/models/props/prop17/double_whopper_hamburger_value_meal.glb",
+    "name": "ダブルワッパーセット",
+    "url": "/models/props/prop17/double_whopper_hamburger_value_meal.glb",
+    "position": [
+      0.4627042638932065,
+      0.9191044504979747,
+      2.8583920649041423
+    ],
+    "rotationY": 0.34906585039886606,
+    "targetSize": 0.66,
+    "mode": "dynamic",
+    "massKg": 0.8,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795419602276_qmz5",
+    "catalogId": "auto_/models/props/prop18/monstera_deliciosa_potted_mid-century_plant.glb",
+    "name": "モンステラの観葉植物",
+    "url": "/models/props/prop18/monstera_deliciosa_potted_mid-century_plant.glb",
+    "position": [
+      -1.3066111235514977,
+      7.450580569168253e-10,
+      4.18668995498138
+    ],
+    "rotationY": -0.5235987755982987,
+    "targetSize": 1.94,
+    "mode": "dynamic",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795420229797_scp3",
+    "catalogId": "auto_/models/props/prop19/fender_precision_bass_1953.glb",
+    "name": "プレシジョンベース",
+    "url": "/models/props/prop19/fender_precision_bass_1953.glb",
+    "position": [
+      -4.487922989662422,
+      7.450580569168253e-10,
+      0.4910359436918295
+    ],
+    "rotationY": 1.48352986419518,
+    "targetSize": 1.94,
+    "mode": "dynamic",
+    "massKg": 2,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795420383203_ov56",
+    "catalogId": "auto_/models/props/prop20/marshall_guitar_amp.glb",
+    "name": "マーシャル・ギターアンプ",
+    "url": "/models/props/prop20/marshall_guitar_amp.glb",
+    "position": [
+      -4.361715844725738,
+      7.450585010060351e-10,
+      -0.783727492711869
+    ],
+    "rotationY": 1.48352986419518,
+    "targetSize": 1.12,
+    "mode": "dynamic",
+    "massKg": 9,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795420469851_rrod",
+    "catalogId": "auto_/models/props/prop5/dining_chair.glb",
+    "name": "ダイニングチェア",
+    "url": "/models/props/prop5/dining_chair.glb",
+    "position": [
+      1.696702360071505,
+      7.450582789614302e-10,
+      2.8433293846331744
+    ],
+    "rotationY": -1.658062789394613,
+    "targetSize": 1.26,
+    "mode": "dynamic",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795420482399_ei0c",
+    "catalogId": "auto_/models/props/prop5/dining_chair.glb",
+    "name": "ダイニングチェア",
+    "url": "/models/props/prop5/dining_chair.glb",
+    "position": [
+      -1.1982168216436648,
+      7.450580569168253e-10,
+      2.478881439779591
+    ],
+    "rotationY": -4.799655442984406,
+    "targetSize": 1.26,
+    "mode": "dynamic",
+    "massKg": 5,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795420553179_qbqa",
+    "catalogId": "auto_/models/props/prop4/gaming_chair.glb",
+    "name": "ゲーミングチェア",
+    "url": "/models/props/prop4/gaming_chair.glb",
+    "position": [
+      -3.756623788832775,
+      7.450580569168253e-10,
+      2.398303763874724
+    ],
+    "rotationY": -6.19591884457987,
+    "targetSize": 1.78,
+    "mode": "dynamic",
+    "massKg": 8,
+    "restitution": 0.2
+  },
+  {
+    "uid": "placed_1795420598069_c14d",
+    "catalogId": "special_goal_mat",
+    "name": "【実験用】ゴールエリア (光るマット)",
+    "url": "__goal_mat__",
+    "position": [
+      -1.0180372931141703,
+      7.450582789614302e-10,
+      -0.2419748630660074
+    ],
+    "rotationY": -6.19591884457987,
+    "targetSize": 2.04,
+    "mode": "static",
+    "massKg": 1,
+    "restitution": 0.1
+  },
+  {
+    "uid": "placed_1795420770657_16z3",
+    "catalogId": "auto_/models/item1/model.gltf",
+    "name": "硬式野球ボール",
+    "url": "/models/item1/model.gltf",
+    "position": [
+      3.1197457152798314,
+      0.6908978184780881,
+      -2.3366451711289375
+    ],
+    "rotationY": -6.19591884457987,
+    "targetSize": 0.14,
+    "mode": "dynamic",
+    "massKg": 0.15,
+    "restitution": 0.35
+  },
+  {
+    "uid": "placed_1795420793165_071f",
+    "catalogId": "auto_/models/item2/model.gltf",
+    "name": "小型LPGガスボンベ",
+    "url": "/models/item2/model.gltf",
+    "position": [
+      4.343027099288254,
+      7.450582789614302e-10,
+      -1.7248710759354244
+    ],
+    "rotationY": -6.19591884457987,
+    "targetSize": 1.16,
+    "mode": "dynamic",
+    "massKg": 12,
+    "restitution": 0.1
+  }
+]

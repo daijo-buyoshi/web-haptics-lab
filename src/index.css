@@ -1,0 +1,246 @@
+:root {
+  --bg-base: #0f0f0f;
+  --bg-panel: #161616;
+  --bg-btn: #262626;
+  --border-color: #2a2a2a;
+  --text-main: #e5e5e5;
+  --text-sub: #888888;
+  --accent: #f59e0b;
+  --error: #ef4444;
+  --font-sans: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN",
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+}
+
+input[type="range"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+button,
+select,
+input {
+  font-family: inherit;
+}
+
+/* 画面中央クロスヘア */
+.crosshair {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid var(--text-sub);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.crosshair.ready {
+  border-color: var(--accent);
+}
+
+.crosshair.grabbed {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  width: 8px;
+  height: 8px;
+}
+
+/* メイン3D画面 左上HUD */
+.hud {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  width: 316px;
+  z-index: 25;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 12px;
+  color: var(--text-main);
+  font-size: 12px;
+}
+
+.hud-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.badge-pad {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  background-color: var(--bg-base);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.badge-pad.off {
+  border-color: var(--border-color);
+  color: var(--text-sub);
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 12px;
+}
+
+.status-row>span:first-child {
+  color: var(--text-sub);
+  white-space: nowrap;
+}
+
+.status-row>span:last-child {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag-ok {
+  color: var(--text-main);
+}
+
+.tag-warn,
+.tag-heavy {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+/* 振動メーター（単色 #f59e0b） */
+.meter-wrap {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.meter-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: var(--text-sub);
+  margin-bottom: 5px;
+}
+
+.meter-label>span:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-main);
+}
+
+.meter-bg {
+  width: 100%;
+  height: 6px;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  background-color: var(--accent);
+}
+
+.controls-box {
+  margin: 8px 0;
+  padding: 7px 8px;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+.btn-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.hud-btn {
+  flex: 1 1 auto;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-btn);
+  color: var(--text-main);
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hud-btn:hover:not(:disabled) {
+  border-color: var(--text-sub);
+}
+
+.hud-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hud-btn.primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-base);
+  font-weight: 700;
+}
+
+.hud-btn.primary:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.hud-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hud-btn.sub {
+  background-color: var(--bg-btn);
+  color: var(--text-main);
+}
