@@ -18,7 +18,7 @@
 
 ### Screenshots
 
-| 3D 実験空間（一人称 / 三人称・VRM全身アバター） | 別ウィンドウ実験コンソール（条件統制・主観評価・CSV出力） |
+| 3D 実験空間（一人称） | 別ウィンドウ実験コンソール（条件統制・主観評価・CSV出力） |
 | :---: | :---: |
 | ![3D Environment](docs/screenshot_3d.png) | ![Experiment Console](docs/screenshot_console.png) |
 
@@ -103,8 +103,7 @@ npm run dev
 
 ## 3D Assets & Credits
 
-本プロジェクトの空間構成には、Sketchfab にて公開されている以下の CC BY 4.0 ライセンスの 3D モデルを使用しています。各制作者の皆様に感謝いたします。
-
+本プロジェクトの空間構成には、Sketchfab にて公開されている以下の CC BY 4.0 ライセンスの 3D モデルを使用しています。
 | # | Model Title | Author | License |
 | :---: | :--- | :--- | :--- |
 | 1 | [Computer Desk](https://sketchfab.com/3d-models/computer-desk-98c5bd86d7bb4ca98dbc26dabb5e7196) | [draakon_4d](https://sketchfab.com/draakon_4d) | [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) |
