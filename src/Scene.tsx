@@ -763,12 +763,10 @@ const PhysicalRoom = memo(function PhysicalRoom({
   hasFloorTex,
   hasWallTex,
   hasCeilingTex,
-  hasBaseboardTex,
 }: {
   hasFloorTex: boolean;
   hasWallTex: boolean;
   hasCeilingTex: boolean;
-  hasBaseboardTex: boolean;
 }) {
   const wallThickness = 0.25;
   const roomWidth = ROOM_HALF * 2;
@@ -785,11 +783,7 @@ const PhysicalRoom = memo(function PhysicalRoom({
     <meshStandardMaterial color="#d8dce3" roughness={0.85} metalness={0.02} />
   );
 
-  const baseboardDir = hasBaseboardTex
-    ? "/textures/baseboard"
-    : hasFloorTex
-      ? "/textures/floor"
-      : null;
+  const baseboardDir = hasFloorTex ? "/textures/floor" : null;
 
   const baseboardMaterial = baseboardDir ? (
     <Suspense fallback={<meshStandardMaterial color="#3b2f26" roughness={0.65} />}>
@@ -2284,7 +2278,6 @@ export const Scene = memo(function Scene({
   const [hasFloorTex, setHasFloorTex] = useState(false);
   const [hasWallTex, setHasWallTex] = useState(false);
   const [hasCeilingTex, setHasCeilingTex] = useState(false);
-  const [hasBaseboardTex, setHasBaseboardTex] = useState(false);
 
   const bodies = useMemo((): BodyDict => ({}), []);
   const staticObstaclesRef = useRef<Record<string, ObstacleBox>>({});
@@ -2305,9 +2298,6 @@ export const Scene = memo(function Scene({
       fileExists("/textures/ceiling/diff.jpg"),
       fileExists("/textures/ceiling/nor.jpg"),
       fileExists("/textures/ceiling/rough.jpg"),
-      fileExists("/textures/baseboard/diff.jpg"),
-      fileExists("/textures/baseboard/nor.jpg"),
-      fileExists("/textures/baseboard/rough.jpg"),
     ]).then(
       ([
         avatarOk,
@@ -2320,15 +2310,11 @@ export const Scene = memo(function Scene({
         cDiff,
         cNor,
         cRough,
-        bDiff,
-        bNor,
-        bRough,
       ]) => {
         setHasAvatar(avatarOk);
         setHasFloorTex(fDiff && fNor && fRough);
         setHasWallTex(wDiff && wNor && wRough);
         setHasCeilingTex(cDiff && cNor && cRough);
-        setHasBaseboardTex(bDiff && bNor && bRough);
       }
     );
   }, []);
@@ -2393,7 +2379,6 @@ export const Scene = memo(function Scene({
             hasFloorTex={hasFloorTex}
             hasWallTex={hasWallTex}
             hasCeilingTex={hasCeilingTex}
-            hasBaseboardTex={hasBaseboardTex}
           />
 
           {placedProps.map((prop) => (
