@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
+import AUTO_MODEL_PATHS from "virtual:public-models";
 import {
   GOAL_MAT_URL,
   type ActiveTrialSnapshot,
@@ -28,6 +29,7 @@ const MONO_FONT =
 const STORAGE_KEY = "web-haptics-lab.placed-props.v4";
 const TUTORIAL_SKIP_KEY = "web-haptics-lab.tutorial-skip.v1";
 const AUTO_CONSOLE_KEY = "web-haptics-lab.auto-console.v1";
+const LIGHTWEIGHT_MODE_KEY = "web-haptics-lab.lightweight-mode.v1";
 
 const GOAL_MAT_CATALOG_ITEM: PropCatalogItem = {
   id: "special_goal_mat",
@@ -64,12 +66,6 @@ const PROP_JAPANESE_NAMES: Record<string, string> = {
   item1: "硬式野球ボール",
   item2: "小型LPGガスボンベ",
 };
-
-const AUTO_MODEL_MODULES = (
-  import.meta as unknown as {
-    glob: (pattern: string) => Record<string, () => Promise<unknown>>;
-  }
-).glob("/public/models/**/*.{glb,gltf}");
 
 function getPropFolderKey(url: string): string | null {
   const m = url.match(/\/models\/(?:props\/)?([^/]+)\//i);
@@ -281,6 +277,14 @@ function Main3DApp() {
     }
   });
   const [autoOpenBlockedHint, setAutoOpenBlockedHint] = useState(false);
+
+  const [lightweightMode, setLightweightMode] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(LIGHTWEIGHT_MODE_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
 
   const [buildMode, setBuildMode] = useState(false);
   const [minimalHud, setMinimalHud] = useState(false);
@@ -536,7 +540,7 @@ function Main3DApp() {
     const hdriOk = await checkPublicFileExists("/hdri/room.hdr");
     setHasCustomHdri(hdriOk);
 
-    const rawPaths = Object.keys(AUTO_MODEL_MODULES).sort();
+    const rawPaths = [...AUTO_MODEL_PATHS].sort();
     const discovered: PropCatalogItem[] = [];
 
     for (const rawPath of rawPaths) {
@@ -827,6 +831,18 @@ function Main3DApp() {
 
   const toggleThirdPerson = useCallback(() => {
     setThirdPerson((v) => !v);
+  }, []);
+
+  const toggleLightweightMode = useCallback(() => {
+    setLightweightMode((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem(LIGHTWEIGHT_MODE_KEY, next ? "1" : "0");
+      } catch {
+        // ignore
+      }
+      return next;
+    });
   }, []);
 
   const toggleBuildMode = useCallback(() => {
@@ -1288,6 +1304,15 @@ function Main3DApp() {
               視点: {thirdPerson ? "三人称" : "一人称"}
             </button>
             <button
+              className={`hud-btn ${lightweightMode ? "active" : ""}`}
+              onClick={(e) => {
+                e.currentTarget.blur();
+                toggleLightweightMode();
+              }}
+            >
+              軽量モード: {lightweightMode ? "ON" : "OFF"}
+            </button>
+            <button
               className="hud-btn"
               onClick={(e) => {
                 e.currentTarget.blur();
@@ -1692,8 +1717,8 @@ function Main3DApp() {
       )}
 
       <Canvas
-        shadows
-        dpr={[1, 1.5]}
+        shadows={!lightweightMode}
+        dpr={lightweightMode ? 0.85 : [1, 1.5]}
         camera={{ position: [0, 1.48, 1.35], fov: 72, near: 0.1 }}
         gl={{
           antialias: true,
@@ -1713,6 +1738,7 @@ function Main3DApp() {
           showBackground={showBackground}
           experimentConfig={experimentConfig}
           thirdPerson={thirdPerson}
+          lightweightMode={lightweightMode}
           tutorialOpen={tutorialOpen}
           nextTrialNumber={nextTrialNumber}
           awaitingRating={pendingTrial !== null}

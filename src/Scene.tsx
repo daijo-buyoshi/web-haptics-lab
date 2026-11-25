@@ -49,6 +49,7 @@ type SceneProps = {
   showBackground: boolean;
   experimentConfig: ExperimentConfig;
   thirdPerson: boolean;
+  lightweightMode: boolean;
   tutorialOpen: boolean;
   nextTrialNumber: number;
   awaitingRating: boolean;
@@ -177,10 +178,19 @@ function useNormalizedGltf(
 const SceneLightingAndEnv = memo(function SceneLightingAndEnv({
   hasCustomHdri,
   showBackground,
+  lightweightMode,
 }: {
   hasCustomHdri: boolean;
   showBackground: boolean;
+  lightweightMode: boolean;
 }) {
+  const { gl } = useThree();
+
+  useEffect(() => {
+    gl.shadowMap.enabled = !lightweightMode;
+    gl.shadowMap.needsUpdate = true;
+  }, [gl, lightweightMode]);
+
   return (
     <>
       <Suspense fallback={null}>
@@ -203,7 +213,7 @@ const SceneLightingAndEnv = memo(function SceneLightingAndEnv({
         position={DIR_LIGHT_POS}
         intensity={2.1}
         color="#fff8ee"
-        castShadow
+        castShadow={!lightweightMode}
         shadow-mapSize={SHADOW_MAP_SIZE}
         shadow-bias={-0.0002}
         shadow-normalBias={0.035}
@@ -2251,6 +2261,7 @@ export const Scene = memo(function Scene({
   showBackground,
   experimentConfig,
   thirdPerson,
+  lightweightMode,
   tutorialOpen,
   nextTrialNumber,
   awaitingRating,
@@ -2373,6 +2384,7 @@ export const Scene = memo(function Scene({
       <SceneLightingAndEnv
         hasCustomHdri={hasCustomHdri}
         showBackground={showBackground}
+        lightweightMode={lightweightMode}
       />
 
       <Physics gravity={PHYSICS_GRAVITY} timeStep={1 / 60}>
@@ -2433,7 +2445,7 @@ export const Scene = memo(function Scene({
         />
       </Physics>
 
-      <ScenePostProcessing />
+      {!lightweightMode && <ScenePostProcessing />}
     </>
   );
 });
