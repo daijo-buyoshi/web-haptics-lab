@@ -2,6 +2,36 @@ import type { TrialRecord } from "./types";
 
 export const EXPERIMENT_CHANNEL_NAME = "web-haptics-lab-sync-v1";
 export const TRIAL_LOGS_STORAGE_KEY = "web-haptics-lab.trial-logs.v1";
+export const ACTIVE_SESSION_STORAGE_KEY = "web-haptics-lab.active-session.v1";
+
+export function createSessionId(): string {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+        return crypto.randomUUID().slice(0, 8);
+    }
+    return `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+}
+
+export function getExperimentChannelName(sessionId?: string | null): string {
+    return sessionId
+        ? `${EXPERIMENT_CHANNEL_NAME}:${sessionId}`
+        : EXPERIMENT_CHANNEL_NAME;
+}
+
+export function saveActiveSessionId(sessionId: string): void {
+    try {
+        localStorage.setItem(ACTIVE_SESSION_STORAGE_KEY, sessionId);
+    } catch {
+        // ignore storage errors
+    }
+}
+
+export function loadActiveSessionId(): string | null {
+    try {
+        return localStorage.getItem(ACTIVE_SESSION_STORAGE_KEY);
+    } catch {
+        return null;
+    }
+}
 
 export function loadSavedTrialLogs(): TrialRecord[] {
     try {

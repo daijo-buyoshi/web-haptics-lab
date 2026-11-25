@@ -15,8 +15,10 @@ import {
   type TrialRecord,
 } from "./types";
 import {
-  EXPERIMENT_CHANNEL_NAME,
+  createSessionId,
+  getExperimentChannelName,
   loadSavedTrialLogs,
+  saveActiveSessionId,
   saveTrialLogs,
 } from "./experimentChannel";
 import { ControlWindow } from "./ControlWindow";
@@ -249,6 +251,8 @@ type BannerInfo = {
 };
 
 function Main3DApp() {
+  const sessionId = useMemo(() => createSessionId(), []);
+
   const [hasCustomHdri, setHasCustomHdri] = useState(false);
   const [catalog, setCatalog] = useState<PropCatalogItem[]>([]);
   const [placedProps, setPlacedProps] = useState<PlacedProp[]>([]);
@@ -367,6 +371,13 @@ function Main3DApp() {
   }, [trialLogs]);
 
   useEffect(() => {
+    saveActiveSessionId(sessionId);
+    const onFocus = () => saveActiveSessionId(sessionId);
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
+  }, [sessionId]);
+
+  useEffect(() => {
     saveTrialLogs(trialLogs);
   }, [trialLogs]);
 
@@ -406,10 +417,10 @@ function Main3DApp() {
 
   const openConsolePopup = useCallback(
     (silent: boolean) => {
-      const url = `${window.location.origin}${window.location.pathname}?mode=console`;
+      const url = `${window.location.origin}${window.location.pathname}?mode=console&session=${encodeURIComponent(sessionId)}`;
       const popup = window.open(
         url,
-        "web-haptics-console",
+        `web-haptics-console-${sessionId}`,
         "popup=yes,width=640,height=860"
       );
       if (!popup) {
@@ -426,7 +437,7 @@ function Main3DApp() {
         window.setTimeout(() => broadcastSync(), 500);
       }
     },
-    [broadcastSync]
+    [broadcastSync, sessionId]
   );
 
   useEffect(() => {
@@ -437,7 +448,7 @@ function Main3DApp() {
   }, [autoOpenConsole, openConsolePopup]);
 
   useEffect(() => {
-    const channel = new BroadcastChannel(EXPERIMENT_CHANNEL_NAME);
+    const channel = new BroadcastChannel(getExperimentChannelName(sessionId));
     channelRef.current = channel;
 
     channel.onmessage = (event: MessageEvent<ExperimentChannelMessage>) => {
@@ -485,7 +496,7 @@ function Main3DApp() {
       channel.close();
       channelRef.current = null;
     };
-  }, [broadcastSync]);
+  }, [broadcastSync, sessionId]);
 
   useEffect(() => {
     broadcastSync();

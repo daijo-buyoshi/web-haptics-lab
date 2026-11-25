@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
     downloadTrialCsv,
-    EXPERIMENT_CHANNEL_NAME,
+    getExperimentChannelName,
+    loadActiveSessionId,
     loadSavedTrialLogs,
 } from "./experimentChannel";
 import type {
@@ -66,18 +67,26 @@ export function ControlWindow() {
     const [discomfort, setDiscomfort] = useState<number | null>(null);
     const [perceivedWeight, setPerceivedWeight] = useState<number | null>(null);
 
+    const sessionId = useMemo(() => {
+        const fromUrl = new URLSearchParams(window.location.search).get("session");
+        if (fromUrl) return fromUrl;
+        return loadActiveSessionId();
+    }, []);
+
     const channelRef = useRef<BroadcastChannel | null>(null);
     const lastPendingNumRef = useRef<number | null>(null);
+    const lastSyncAtRef = useRef<number>(0);
 
     useEffect(() => {
         document.title = "実験コンソール | Web3D擬似触覚";
 
-        const channel = new BroadcastChannel(EXPERIMENT_CHANNEL_NAME);
+        const channel = new BroadcastChannel(getExperimentChannelName(sessionId));
         channelRef.current = channel;
 
         channel.onmessage = (event: MessageEvent<ExperimentChannelMessage>) => {
             const msg = event.data;
             if (msg.type === "STATE_SYNC") {
+                lastSyncAtRef.current = Date.now();
                 setSyncState(msg.payload);
                 setConnected(true);
 
@@ -93,6 +102,9 @@ export function ControlWindow() {
         channel.postMessage({ type: "REQUEST_SYNC" } satisfies ExperimentChannelMessage);
 
         const pingTimer = window.setInterval(() => {
+            if (lastSyncAtRef.current > 0 && Date.now() - lastSyncAtRef.current > 3500) {
+                setConnected(false);
+            }
             channel.postMessage({ type: "REQUEST_SYNC" } satisfies ExperimentChannelMessage);
         }, 3000);
 
@@ -101,7 +113,7 @@ export function ControlWindow() {
             channel.close();
             channelRef.current = null;
         };
-    }, []);
+    }, [sessionId]);
 
     const send = (msg: ExperimentChannelMessage) => {
         channelRef.current?.postMessage(msg);
@@ -179,6 +191,7 @@ export function ControlWindow() {
                 </div>
                 <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
                     <span
+                        title={sessionId ? `Session: ${sessionId}` : undefined}
                         style={{
                             padding: "2px 8px",
                             borderRadius: 4,
